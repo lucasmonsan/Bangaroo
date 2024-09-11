@@ -2,30 +2,36 @@
   "hash": "2dd57f51",
   "configHash": "1f82e2be",
   "lockfileHash": "aa92d5cb",
-  "browserHash": "253212bf",
+  "browserHash": "04a813fe",
   "optimized": {
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "c378923c",
+      "fileHash": "8a20eaee",
       "needsInterop": true
     },
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "4a73be95",
+      "fileHash": "abcc9275",
       "needsInterop": true
     },
     "react-router-dom": {
       "src": "../../node_modules/react-router-dom/dist/index.js",
       "file": "react-router-dom.js",
-      "fileHash": "76450be1",
+      "fileHash": "78079319",
       "needsInterop": false
     },
     "framer-motion": {
       "src": "../../node_modules/framer-motion/dist/es/index.mjs",
       "file": "framer-motion.js",
-      "fileHash": "34b718ad",
+      "fileHash": "ea32607a",
+      "needsInterop": false
+    },
+    "react-leaflet": {
+      "src": "../../node_modules/react-leaflet/lib/index.js",
+      "file": "react-leaflet.js",
+      "fileHash": "7ac1f1ce",
       "needsInterop": false
     }
   },
