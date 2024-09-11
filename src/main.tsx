@@ -1,13 +1,16 @@
+import "./index.css"
+import AppRouter from "./AppRouter.tsx"
 import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
+import { GlobalProvider } from "./contexts/GlobalContext.tsx"
 import { BrowserRouter } from "react-router-dom"
-import AppRouter from "./AppRouter.tsx"
-import "./main.css"
 
 createRoot(document.getElementById("root")!).render(
-	<StrictMode>
-		<BrowserRouter>
-			<AppRouter />
-		</BrowserRouter>
-	</StrictMode>,
+  <StrictMode>
+    <BrowserRouter>
+      <GlobalProvider>
+        <AppRouter />
+      </GlobalProvider>
+    </BrowserRouter>
+  </StrictMode>
 )

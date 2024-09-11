@@ -1,0 +1,241 @@
+.debug {
+  border: solid 2px red;
+}
+
+/***/
+
+.z-hide {
+  z-index: -1;
+}
+.z-bg {
+  z-index: 0;
+}
+.z-app {
+  z-index: 1;
+}
+.z-hf {
+  z-index: 2;
+}
+.z-menu {
+  z-index: 3;
+}
+.z-context {
+  z-index: 4;
+}
+
+/***/
+
+.fixed {
+  position: fixed;
+}
+
+/***/
+
+.flex {
+  display: flex;
+}
+.column {
+  flex-direction: column;
+}
+.ai-center {
+  align-items: center;
+}
+.jc-center {
+  justify-content: center;
+}
+.jc-end {
+  justify-content: flex-end;
+}
+
+/***/
+
+.gap-md {
+  gap: var(--base);
+}
+.gap-sm {
+  gap: calc(var(--base) * 0.5);
+}
+
+/***/
+
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+.h-md {
+  height: var(--base);
+}
+
+/***/
+
+.padd-lg {
+  padding: calc(var(--base) * 1.5);
+}
+.padd-md {
+  padding: var(--base);
+}
+
+/***/
+
+.bg-color-bg {
+  background-color: var(--color-bg);
+}
+.bg-color-1 {
+  background-color: var(--color-1);
+}
+
+/***/
+
+.fill-color-1 {
+  fill: var(--color-1);
+}
+
+/***/
+
+.title {
+  font-family: var(--family-1);
+}
+.text {
+  font-family: var(--family-2);
+}
+
+/***/
+
+.extra-bold {
+  font-weight: 800;
+}
+.bold {
+  font-weight: bold;
+}
+.medium {
+  font-weight: 500;
+}
+
+/***/
+
+.lh-xl {
+  line-height: calc(var(--base) * 3);
+}
+.lh-md {
+  line-height: var(--base);
+}
+
+/***/
+
+.color-1 {
+  color: var(--color-1);
+}
+
+/***/
+
+.fs-xl {
+  font-size: calc(var(--base) * 2);
+}
+.fs-lg {
+  font-size: calc(var(--base) * 1.5);
+}
+.fs-md {
+  font-size: var(--base);
+}
+
+/***/
+
+.text-center {
+  text-align: center;
+}
+.text-shadow {
+  text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 16px;
+}
+
+/***/
+
+.border-none {
+  border: none;
+}
+.radius-1 {
+  border-radius: var(--base);
+}
+
+/***/
+
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-1 {
+  opacity: 1;
+}
+
+/***/
+
+.box-shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 16px;
+}
+
+/***/
+
+.scale-0 {
+  transform: scale(0);
+}
+.scale-1 {
+  transform: scale(1);
+}
+
+/***/
+
+.cover {
+  object-fit: cover;
+}
+
+/***/
+
+.fast {
+  transition: all var(--fast);
+}
+.slow {
+  transition: all var(--slow);
+}
+
+/***/
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+.fade-in {
+  animation: fade-in 0.5s normal;
+}
+
+/***/
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/***/
+
+.normal {
+  cursor: pointer;
+  padding: var(--base);
+  font-size: calc(var(--base) * 1.5);
+  font-weight: 800;
+  border: none;
+  border-radius: var(--base);
+  background-color: var(--color-1);
+}
