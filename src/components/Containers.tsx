@@ -6,9 +6,9 @@ interface ContainerProps {
 	className?: string
 }
 
-export const Main: FC<ContainerProps> = ({ children }) => {
+export const Main: FC<ContainerProps> = ({ children, className }) => {
 	return (
-		<motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className="flex ai-center jc-center h-100">
+		<motion.main initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} className={`relative flex ai-center jc-center h-100 ${className}`}>
 			{children}
 		</motion.main>
 	)

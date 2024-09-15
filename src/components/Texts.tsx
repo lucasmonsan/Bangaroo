@@ -6,7 +6,7 @@ interface TextProps {
 }
 
 export const H1: FC<TextProps> = ({ children, className }) => {
-	return <h1 className={`family-1 ${className}`}>{children}</h1>
+	return <h1 className={`family-1 lh-lg ${className}`}>{children}</h1>
 }
 
 export const H2: FC<TextProps> = ({ children, className }) => {

@@ -13,7 +13,7 @@ interface InputProps {
 export const Input: FC<InputProps> = ({ placeholder, value, onChange, className }) => {
 	return (
 		<label className={`pointer flex column ${className}`} style={{ minWidth: "calc(var(--base) * 10)" }}>
-			<input className={`flex ai-center jc-center w-100 border-none bg-none outline-none family-1 fs-lg ${className}`} placeholder={placeholder} value={value} onChange={onChange} />
+			<input className={`flex ai-center jc-center w-100 border-none bg-none outline-none family-1 fs-md ${className}`} placeholder={placeholder} value={value} onChange={onChange} />
 		</label>
 	)
 }

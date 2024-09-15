@@ -1,77 +1,68 @@
-import { FormEvent, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { Input } from "./Inputs"
-import { Button } from "./Button"
-import search from "../assets/search.svg"
+// SearchBar.tsx
+
+import { FormEvent, useContext, useEffect, useState } from "react";
+import { Input } from "./Inputs";
+import { Button } from "./Button";
+import { GlobalContext } from "../contexts/GlobalContext";
+import { buscarMunicipiosNoIndexedDB, SearchResult } from "../api/indexedDB";
+import search from "../assets/search.svg";
 
 export const SearchBar = () => {
-	const [cityName, setCityName] = useState("")
-	const [options, setOptions] = useState<string[]>([]) // Lista de opções de cidades
-	const navigate = useNavigate()
+	const [currentCity, setCurrentCity] = useState("");
+	const [typedCity, setTypedCity] = useState("");
+	const [trigger, setTrigger] = useState(false);
+	const [options, setOptions] = useState<SearchResult[]>([]);
+	const { setLat, setLon } = useContext(GlobalContext);
 
 	useEffect(() => {
-		const modal = document.getElementById("ModalSearchResult")
+		const modal = document.getElementById("ModalSearchResult");
 		if (modal) {
-			if (cityName === "") {
-				modal.style.opacity = "0"
-				setTimeout(() => {
-					modal.style.zIndex = "-1"
-				}, 250)
+			if (currentCity !== typedCity || currentCity === "") setTrigger(false);
+			else setTrigger(true);
+		}
+	}, [trigger, currentCity]);
+
+	useEffect(() => {
+		const searchMunicipios = async () => {
+			if (typedCity) {
+				console.log("Pesquisando município:", typedCity);
+				const municipios = await buscarMunicipiosNoIndexedDB(typedCity);
+				setTrigger(true);
+				console.log("Resultados encontrados:", municipios);
+				setOptions(municipios);
 			} else {
-				modal.style.zIndex = "3"
-				modal.style.opacity = "1"
+				setTrigger(true);
+				setOptions([]);
 			}
-		}
-	}, [cityName])
+		};
 
-	const fetchCitySuggestions = async () => {
-		if (cityName.length > 2) {
-			try {
-				const response = await fetch(`https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(cityName)}&format=json`)
-				const data = await response.json()
+		searchMunicipios();
+	}, [typedCity]);
 
-				const cityOptions = data
-					.filter((city: any) => city.addresstype === "municipality")
-					.map((city: any) => {
-						const parts = city.display_name.split(",")
-						const formattedName = `${parts[0]}, ${parts[2]}, ${parts[3]}, ${parts[5]}`
+	const handleCityChoose = (lat: string, lon: string) => {
+		setLat(parseFloat(lat));
+		setLon(parseFloat(lon));
+		setTrigger(false);
+	};
 
-						return formattedName
-					})
-
-				setOptions(cityOptions)
-			} catch (error) {
-				console.error("Erro ao buscar sugestões de cidades:", error)
-			}
-		} else {
-			setOptions([""])
-		}
-	}
-
-	const handleSearch = (e: FormEvent) => {
-		e.preventDefault() // Impede o comportamento padrão do formulário
-		if (cityName === "") {
-			alert("Digite o nome da cidade para pesquisar")
-		} else {
-			/// Chamar a função de busca de cidades
-			if (cityName) fetchCitySuggestions()
-		}
-	}
+	const handleSearch = async (e: FormEvent) => {
+		e.preventDefault();
+		setTypedCity(currentCity);
+	};
 
 	return (
-		<form onSubmit={handleSearch} className="relative flex ai-center jc-between gap-md w-100 bg-white shadow radius-md" style={{ maxWidth: "960px" }}>
-			<Input placeholder="Digite o nome da cidade" className="w-100 padd-lr-xs color-1" value={cityName} onChange={(e) => setCityName(e.target.value)} />
+		<form onSubmit={handleSearch} className="relative flex ai-center jc-between gap-md w-100 bg-white shadow radius-md shadow">
+			<Input placeholder="Digite o nome da cidade" className="w-100 padd-lr-xs color-1" value={currentCity} onChange={(e) => setCurrentCity(e.target.value)} />
 
 			<Button className="pointer w-xxxl h-xxxl bg-none" type="submit">
 				<img src={search} alt="" className="h-100" />
 			</Button>
 
-			{/* Modal para exibir as sugestões de cidades */}
-			<div id="ModalSearchResult" className="z-hide scroll-y absolute top-100 margin-t-xxs w-100 h-80dvh max-h-80dvh padd-xxs padd-lr-md bg-glass radius-md fast">
+			<div id="ModalSearchResult" className={`hidden scroll-y absolute top-100 margin-t-xxs w-100 max-h-80dvh padd-lr-md bg-glass radius-md shadow fast ${trigger ? "padd-xxs h-80dvh opacity-1" : "padd-0 h-0 opacity-0"}`} aria-hidden={!trigger}>
 				{options.length > 0 ? (
 					options.map((option, index) => (
-						<div key={index} className="pointer h-100 color-1" onClick={() => setCityName(option)}>
-							{option}
+						<div key={index} className="pointer h-xxxl color-1" onClick={() => handleCityChoose(option.lat, option.lon)}>
+							{option.display_name}
 						</div>
 					))
 				) : (
@@ -79,5 +70,5 @@ export const SearchBar = () => {
 				)}
 			</div>
 		</form>
-	)
-}
+	);
+};
