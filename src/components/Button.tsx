@@ -5,11 +5,12 @@ interface ButtonProps {
 	children: ReactNode
 	className?: string
 	onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+	style?: Object
 }
 
-export const Button: FC<ButtonProps> = ({ type = "button", children, className }) => {
+export const Button: FC<ButtonProps> = ({ type = "button", children, className, style }) => {
 	return (
-		<button type={type} className={`flex ai-center jc-center padd-xs padd-lr-md border-none ${className}`}>
+		<button type={type} className={`flex ai-center jc-center padd-xs padd-lr-md border-none ${className}`} style={style}>
 			{children}
 		</button>
 	)

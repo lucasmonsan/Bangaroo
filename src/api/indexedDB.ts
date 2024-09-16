@@ -27,10 +27,12 @@ interface MunicipioProps {
     lon: string;
   }
 }
-
 export interface SearchResult {
   place_id: number;
   display_name: string;
+  regiao_imediata: string;
+  regiao_intermediaria: string;
+  UF: string;
   lat: string;
   lon: string;
 }
@@ -75,6 +77,9 @@ export const buscarMunicipiosNoIndexedDB = async (query: string): Promise<Search
       display_name: municipio.nome,
       lat: municipio.coordenadas.lat,
       lon: municipio.coordenadas.lon,
+      regiao_imediata: municipio.regiao_imediata.nome,
+      regiao_intermediaria: municipio.regiao_intermediaria.nome,
+      UF: municipio.UF.sigla
     });
 
     // Filtragem de resultados exatos
@@ -99,3 +104,13 @@ export const buscarMunicipiosNoIndexedDB = async (query: string): Promise<Search
     return [];
   }
 };
+
+export async function atualizarMunicipioNoIndexedDB(municipioAtualizado: MunicipioProps) {
+  try {
+    // Atualiza o município específico no IndexedDB
+    await db.municipios.put(municipioAtualizado);
+    console.log('Município atualizado com sucesso no IndexedDB!', municipioAtualizado);
+  } catch (error) {
+    console.error('Erro ao atualizar o município no IndexedDB:', error);
+  }
+}
