@@ -71,8 +71,7 @@ export const buscarMunicipiosNoIndexedDB = async (query: string): Promise<Search
     const queryNormalizada = normalizarTexto(query);
     const municipios = await db.municipios.toArray();
 
-    // Função para converter MunicipioProps para SearchResult
-    const converterParaSearchResult = (municipio: MunicipioProps): SearchResult => ({
+    const converterParaSearchResult = (municipio: MunicipioProps): SearchResult => ({ // Função para converter MunicipioProps para SearchResult
       place_id: municipio.id,
       display_name: municipio.nome,
       lat: municipio.coordenadas.lat,
@@ -82,21 +81,12 @@ export const buscarMunicipiosNoIndexedDB = async (query: string): Promise<Search
       UF: municipio.UF.sigla
     });
 
-    // Filtragem de resultados exatos
-    const resultadosExatos = municipios
-      .filter(municipio => normalizarTexto(municipio.nome).includes(queryNormalizada))
-      .map(converterParaSearchResult);
+    const resultadosExatos = municipios.filter(municipio => normalizarTexto(municipio.nome).includes(queryNormalizada)).map(converterParaSearchResult); // Filtragem de resultados exatos
 
-    // Combine os resultados exatos, mantendo apenas os exatos e ordenando por nome
-    const resultadosUnicos = new Map<number, SearchResult>();
-    resultadosExatos.forEach(result => {
-      resultadosUnicos.set(result.place_id, result);
-    });
+    const resultadosUnicos = new Map<number, SearchResult>(); // Combine os resultados exatos, mantendo apenas os exatos e ordenando por nome
+    resultadosExatos.forEach(result => resultadosUnicos.set(result.place_id, result));
 
-    // Converta Map para Array e ordene por nome
-    const resultadosOrdenados = Array.from(resultadosUnicos.values()).sort((a, b) =>
-      a.display_name.localeCompare(b.display_name)
-    );
+    const resultadosOrdenados = Array.from(resultadosUnicos.values()).sort((a, b) => a.display_name.localeCompare(b.display_name)); // Converta Map para Array e ordene por nome
 
     return resultadosOrdenados;
   } catch (error) {

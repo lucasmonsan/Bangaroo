@@ -8,20 +8,25 @@ interface GlobalContextType {
 	setLat: Dispatch<SetStateAction<number>>
 	lon: number
 	setLon: Dispatch<SetStateAction<number>>
+	cityId: number
+	setCityId: Dispatch<SetStateAction<number>>
 }
 const defaultGlobalContext: GlobalContextType = {
-	lat: 51.505,
-	setLat: () => {},
-	lon: -0.09,
-	setLon: () => {},
+	lat: 0,
+	setLat: () => { },
+	lon: 0,
+	setLon: () => { },
+	cityId: 0,
+	setCityId: () => { },
 }
 export const GlobalContext = createContext<GlobalContextType>(defaultGlobalContext)
 
 export const GlobalProvider: FC<GlobalProps> = ({ children }) => {
-	const [lat, setLat] = useState(51.505)
-	const [lon, setLon] = useState(-0.09)
+	const [lat, setLat] = useState(0)
+	const [lon, setLon] = useState(0)
+	const [cityId, setCityId] = useState(0)
 
-	return <GlobalContext.Provider value={{ lat, setLat, lon, setLon }}>{children}</GlobalContext.Provider>
+	return <GlobalContext.Provider value={{ lat, setLat, lon, setLon, cityId, setCityId }}>{children}</GlobalContext.Provider>
 }
 export const useGlobal = () => {
 	const context = useContext(GlobalContext)

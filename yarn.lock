@@ -506,6 +506,11 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
+appwrite@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/appwrite/-/appwrite-15.0.0.tgz#73d609fe5c3a4bc9c87a651a8d7c21ef002e8c22"
+  integrity sha512-rzmo+87tizYLs3YnRLets+vMUF85S/OHkgiGgp0UKcKJj0U1RktAsuIecFqRROKfkqs0fKzggRAIs3RCoYQQwA==
+
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"

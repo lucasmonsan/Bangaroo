@@ -10,7 +10,7 @@ interface ButtonProps {
 
 export const Button: FC<ButtonProps> = ({ type = "button", children, className, style }) => {
 	return (
-		<button type={type} className={`flex ai-center jc-center padd-xs padd-lr-md border-none ${className}`} style={style}>
+		<button type={type} className={`pointer flex ai-center jc-center padd-xs padd-lr-md border-none ${className}`} style={style}>
 			{children}
 		</button>
 	)

@@ -14,6 +14,6 @@ export const H2: FC<TextProps> = ({ children, className, style }) => {
 	return <h2 className={`family-1 ${className}`} style={style}>{children}</h2>
 }
 
-export const P: FC<TextProps> = ({ children, className }) => {
-	return <p className={`family-1 ${className}`}>{children}</p>
+export const P: FC<TextProps> = ({ children, className, style }) => {
+	return <p className={`family-1 ${className}`} style={style}>{children}</p>
 }

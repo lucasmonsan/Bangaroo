@@ -1,25 +1,20 @@
 import { AnimatePresence } from "framer-motion"
 import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom"
 import { HomePage } from "./pages/HomePage"
-import { Header } from "./components/Header"
 import { SplashPage } from "./pages/SplashPage"
 
 function AppRouter() {
 	const location = useLocation()
 
 	return (
-		<>
-			<Header />
-
-			<AnimatePresence mode="wait">
-				<Routes location={location} key={location.pathname}>
-					<Route path="*" element={<SplashRedirect />}>
-						<Route index element={<HomePage />} />
-					</Route>
-					<Route path="splash" element={<SplashPage />} />
-				</Routes>
-			</AnimatePresence>
-		</>
+		<AnimatePresence mode="wait">
+			<Routes location={location} key={location.pathname}>
+				<Route path="*" element={<SplashRedirect />}>
+					<Route index element={<HomePage />} />
+				</Route>
+				<Route path="splash" element={<SplashPage />} />
+			</Routes>
+		</AnimatePresence>
 	)
 }
 
