@@ -1,6 +1,7 @@
-import { Route, Routes, useLocation } from "react-router-dom"
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom"
 import { HomePage } from "./pages/HomePage"
 import { AnimatePresence } from "framer-motion"
+import { SplashPage } from "./pages/SplashPage"
 
 function AppRouter() {
   const location = useLocation()
@@ -8,10 +9,22 @@ function AppRouter() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route index element={<HomePage />} />
+        <Route path="*" element={<SplashRedirect />}>
+          <Route index element={<HomePage />} />
+        </Route>
+        <Route path="splash" element={<SplashPage />} />
       </Routes>
     </AnimatePresence>
   )
 }
 
 export default AppRouter
+
+/***/
+
+const SplashRedirect = () => {
+  const first = sessionStorage.getItem("first")
+
+  if (!first) return <Navigate to="/splash" />
+  else return <Outlet />
+}
