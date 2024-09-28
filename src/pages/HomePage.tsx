@@ -1,14 +1,12 @@
-import { Main } from "../components/Containers";
-import { Footer } from "../components/Footer";
-import { Header } from "../components/Header";
-import { Map } from "../components/Map";
+import { FC } from "react";
+import { PageContainer } from "../containers/PageContainer";
 
-export const HomePage = () => {
-	return (
-		<Main>
-			<Header />
-			<Map />
-			<Footer />
-		</Main>
-	);
-};
+interface HomePageProps { };
+
+export const HomePage: FC<HomePageProps> = (props) => {
+  return (
+    <PageContainer>
+      <h1>HomePage</h1>
+    </PageContainer>
+  );
+}
