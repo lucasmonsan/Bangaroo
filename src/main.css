@@ -1,16 +1,26 @@
 :root {
+	--z-hide: -1;
+	--z-app: 1;
+	--z-btn-cancel: 2;
+	--z-footer: 3;
+	--z-modal: 4;
+	--z-loading: 5;
 	--base: min(3.75vw, 1rem);
-	--header-h: calc(var(--base) * 5);
-	--footer-h: calc(var(--base) * 5);
-	--family-1: "Exo", sans-serif;
-	--family-2: "Orbitron", sans-serif;
+	--header-h: calc(var(--base) * 3);
+	--footer-h: calc(var(--base) * 3);
+	--family-1: "Rubik", serif;
+	--family-2: "Nunito", sans-serif;
 	--slow: 0.5s ease-in-out;
 	--fast: 0.25s ease-in-out;
 	--white: #efedeb;
-	--black: #131116;
+	--black: #1b1b1b;
+	--comp: #292929;
+	--border: #5e5e5e;
 	--color-1: #456990;
 	--color-2: #68452e;
 	--color-3: #f45b69;
+	--shadow-1: rgba(46, 46, 51, 0.25) 0px 7px 29px 0px;
+	--radius-1: var(--md);
 
 	--xxxs: calc(var(--base) * 0.125);
 	--xxs: calc(var(--base) * 0.25);
@@ -45,17 +55,100 @@ main {
 	width: 100%;
 	min-height: 100dvh;
 	height: 100%;
-	background-color: var(--white);
+	background-color: var(--black);
 }
 
-@media (max-width: 640px) {
-	main#root {
-		width: 100%;
-	}
+input,
+textarea {
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	appearance: none;
+	font-weight: 500;
+	font-size: var(--md);
+	resize: none;
+	background-color: transparent;
 }
-@media (min-width: 641px) {
-	main#root {
-		width: 100%;
-		max-width: 1920px;
-	}
+
+button {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: var(--md);
+	text-align: center;
+	font-weight: bold;
+	font-size: var(--lg);
+	text-align: center;
+	appearance: none;
+	background-color: var(--color-1);
+	border-radius: var(--radius-1);
+	border: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+button {
+	color: var(--white);
+	font-family: var(--family-1);
+}
+
+p,
+input {
+	color: var(--white);
+	font-family: var(--family-2);
+}
+
+label {
+	cursor: pointer;
+}
+
+svg {
+	height: 100%;
+}
+
+/***/
+
+.leaflet-container {
+	width: 100%;
+}
+.leaflet-container .leaflet-top {
+	display: none;
+}
+.leaflet-popup-content {
+	margin: var(--lg) var(--md) var(--md);
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background-color: var(--black);
+}
+.leaflet-popup-close-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--xl) !important;
+	height: var(--xl) !important;
+}
+.leaflet-bottom {
+	width: 100%;
+}
+.leaflet-control {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--xxs);
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/***/
+
+@media (max-width: 960px) {
+}
+@media (min-width: 961px) {
 }

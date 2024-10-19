@@ -1,0 +1,14 @@
+Proposta de Fluxo Otimizado
+
+  Splash Page:
+    Carrega os municípios e distritos no IndexedDB.
+    Redireciona para a tela inicial com o mapa.
+  Pesquisa de Município/Distrito:
+    O usuário pesquisa pelo nome.
+    Selecione o município e centralize no mapa com a ajuda do Nominatim.
+  Busca e Salvamento de Bairros Sob Demanda:
+    Ao centralizar no município, você faz uma requisição ao Nominatim para listar bairros próximos.
+    Salve os bairros com suas coordenadas no IndexedDB e no AppWrite para futuros acessos.
+  Pins Baseados em Reviews:
+    O pin é exibido no bairro específico se houver um review para aquele local.
+    Caso contrário, exibe o pin no centro do município.
